@@ -329,7 +329,7 @@ public class StoryCaptionView extends NestedScrollView {
             if (overScrollY > 0) {
                 if (delta < 0) {
                     overScrollY = 0;
-                    consumed[1] += dy + delta;
+                    consumed[1] += (int)(dy + delta);
                 } else {
                     overScrollY = delta;
                     consumed[1] += dy;
