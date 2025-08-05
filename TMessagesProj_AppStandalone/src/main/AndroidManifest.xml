@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto">
 
-    <application android:name="org.telegram.messenger.ApplicationLoaderImpl" tools:replace="name">
+    <application android:name="org.telegram.messenger.ApplicationLoaderImpl" tools:replace="name"
+        tools:ignore="MissingApplicationIcon">
         <service
             android:name="org.telegram.messenger.GoogleVoiceClientService"
-            android:exported="true"
-            android:foregroundServiceType="dataSync"
-        />
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
         <activity
             android:name="org.telegram.messenger.GoogleVoiceClientActivity"
             android:exported="true">
@@ -22,8 +22,7 @@
         <service
             android:name="org.telegram.messenger.SMSJobsNotification"
             android:enabled="true"
-            android:exported="true"
-            android:foregroundServiceType="dataSync|remoteMessaging"
-        />
+            android:exported="false"
+            android:foregroundServiceType="dataSync|remoteMessaging" />
     </application>
 </manifest>

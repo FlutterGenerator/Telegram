@@ -50,9 +50,8 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-    <uses-permission android:name="android.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>
     <uses-permission android:name="android.permission.CAMERA" />
@@ -109,7 +108,8 @@
         android:allowAudioPlaybackCapture="true"
         tools:replace="android:supportsRtl"
         android:usesCleartextTraffic="true"
-    >
+        tools:ignore="MissingApplicationIcon"
+        tools:targetApi="30">
         <!-- usesCleartextTraffic for browser supporting opening http:// links -->
 
         <activity-alias
@@ -214,7 +214,8 @@
             android:hardwareAccelerated="@bool/useHardwareAcceleration"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize"
-            android:exported="true">
+            android:exported="true"
+            tools:targetApi="24">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -253,16 +254,22 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="vnd.android.cursor.item/vnd.org.telegram.messenger.android.profile"/>
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:host="telegram.me" android:scheme="http" />
-                <data android:host="telegram.me" android:scheme="https" />
-                <data android:host="telegram.dog" android:scheme="http" />
-                <data android:host="telegram.dog" android:scheme="https" />
-                <data android:host="t.me" android:scheme="http" />
-                <data android:host="t.me" android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:host="telegram.me" />
+                <data android:scheme="https" />
+                <data android:host="telegram.me" />
+                <data android:scheme="http" />
+                <data android:host="telegram.dog" />
+                <data android:scheme="https" />
+                <data android:host="telegram.dog" />
+                <data android:scheme="http" />
+                <data android:host="t.me" />
+                <data android:scheme="https" />
+                <data android:host="t.me" />
             </intent-filter>
             <intent-filter android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:priority="1">
                 <action android:name="android.intent.action.VIEW"/>
@@ -306,7 +313,8 @@
             android:windowSoftInputMode="adjustResize"
             android:allowEmbedded="true"
             android:documentLaunchMode="always"
-            android:resizeableActivity="true"/>
+            android:resizeableActivity="true"
+            tools:targetApi="24" />
         <activity
             android:name="org.telegram.ui.ShareActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
@@ -380,8 +388,9 @@
             android:launchMode="singleTask"
             android:taskAffinity=""
             android:theme="@style/Theme.TMessages.PopupNotification"
-            android:resizeableActivity="false"
-            android:windowSoftInputMode="adjustResize|stateHidden">
+            android:resizeableActivity="true"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            tools:targetApi="24">
         </activity>
         <activity android:name="org.telegram.ui.VoIPPermissionActivity"
                   android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
@@ -421,14 +430,15 @@
         <receiver
             android:name=".AutoMessageReplyReceiver"
             android:exported="false">
-e            <intent-filter>
+            <intent-filter>
                 <action android:name="org.telegram.messenger.ACTION_MESSAGE_REPLY"/>
             </intent-filter>
         </receiver>
 
         <receiver
             android:name=".SmsReceiver"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED"/>
             </intent-filter>
@@ -442,7 +452,7 @@ e            <intent-filter>
 
         <service
             android:name=".AuthenticatorService"
-            android:exported="true"
+            android:exported="false"
             android:foregroundServiceType="dataSync"
         >
             <intent-filter>
@@ -454,7 +464,7 @@ e            <intent-filter>
 
         <service
             android:name=".ContactsSyncAdapterService"
-            android:exported="true"
+            android:exported="false"
             android:foregroundServiceType="dataSync"
         >
             <intent-filter>
@@ -475,13 +485,13 @@ e            <intent-filter>
         <service
             android:name=".BringAppForegroundService"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             android:foregroundServiceType="mediaPlayback"
         />
         <service
             android:name=".NotificationsService"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             android:foregroundServiceType="dataSync"
         />
         <service
@@ -492,25 +502,25 @@ e            <intent-filter>
         <service
             android:name=".VideoEncodingService"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             android:foregroundServiceType="dataSync"
         />
         <service
             android:name="org.telegram.ui.Stories.recorder.StoryUploadingService"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             android:foregroundServiceType="dataSync"
         />
         <service
             android:name=".ImportingService"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             android:foregroundServiceType="dataSync"
         />
         <service
             android:name=".LocationSharingService"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             android:foregroundServiceType="location|dataSync"
         />
         <service
@@ -521,13 +531,13 @@ e            <intent-filter>
         />
         <service
             android:name=".MusicPlayerService"
-            android:exported="true"
+            android:exported="false"
             android:enabled="true"
             android:foregroundServiceType="mediaPlayback"
         />
         <service
             android:name=".MusicBrowserService"
-            android:exported="true"
+            android:exported="false"
             android:foregroundServiceType="mediaPlayback"
         >
             <intent-filter>
@@ -612,7 +622,7 @@ e            <intent-filter>
         <provider
             android:authorities="${applicationId}.call_sound_provider"
             android:name=".voip.CallNotificationSoundProvider"
-            android:exported="true"/>
+            android:exported="false"/>
 
         <receiver android:name=".ChatsWidgetProvider" android:exported="false">
             <meta-data android:name="android.appwidget.provider"
@@ -659,7 +669,7 @@ e            <intent-filter>
             android:name=".FilesMigrationService"
             android:exported="false"
             android:foregroundServiceType="dataSync"
-        />
+            tools:ignore="NewApi" />
 
         <uses-library android:name="com.sec.android.app.multiwindow" android:required="false" />
         <meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />

@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto">
 
-    <application android:name="org.telegram.messenger.ApplicationLoaderImpl" tools:replace="name" android:gwpAsanMode="always">
-        <service android:name="org.telegram.messenger.GoogleVoiceClientService" android:exported="true"/>
+    <application android:name="org.telegram.messenger.ApplicationLoaderImpl" tools:replace="name" android:gwpAsanMode="always"
+        tools:ignore="MissingApplicationIcon"
+        tools:targetApi="30">
+        <service android:name="org.telegram.messenger.GoogleVoiceClientService" android:exported="false"/>
         <activity
             android:name="org.telegram.messenger.GoogleVoiceClientActivity"
             android:exported="true">
