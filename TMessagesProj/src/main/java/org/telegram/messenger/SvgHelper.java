@@ -440,6 +440,9 @@ public class SvgHelper {
     public static Bitmap getBitmap(int res, int width, int height, int color, float scale) {
         try (InputStream stream = ApplicationLoader.applicationContext.getResources().openRawResource(res)) {
             SAXParserFactory spf = SAXParserFactory.newInstance();
+            spf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            spf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+            spf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             SAXParser sp = spf.newSAXParser();
             XMLReader xr = sp.getXMLReader();
             SVGHandler handler = new SVGHandler(width, height, color, false, scale);
@@ -455,6 +458,9 @@ public class SvgHelper {
     public static Bitmap getBitmap(InputStream stream, int width, int height, boolean white) {
         try {
             SAXParserFactory spf = SAXParserFactory.newInstance();
+            spf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            spf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+            spf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             SAXParser sp = spf.newSAXParser();
             XMLReader xr = sp.getXMLReader();
             SVGHandler handler = new SVGHandler(width, height, white ? 0xffffffff : null, false, 1f);
@@ -470,6 +476,9 @@ public class SvgHelper {
     public static Bitmap getBitmap(File file, int width, int height, boolean white) {
         try (FileInputStream stream = new FileInputStream(file)) {
             SAXParserFactory spf = SAXParserFactory.newInstance();
+            spf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            spf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+            spf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             SAXParser sp = spf.newSAXParser();
             XMLReader xr = sp.getXMLReader();
             SVGHandler handler = new SVGHandler(width, height, white ? 0xffffffff : null, false, 1f);
