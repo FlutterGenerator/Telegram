@@ -1059,7 +1059,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                             k = 1f;
                         }
                         recyclerListView.setOverScrollMode(View.OVER_SCROLL_NEVER);
-                        measuredDy *= PullForegroundDrawable.startPullParallax - PullForegroundDrawable.endPullParallax * k;
+                        measuredDy = (int) (measuredDy * (PullForegroundDrawable.startPullParallax - PullForegroundDrawable.endPullParallax * k));
                         if (measuredDy > -1) {
                             measuredDy = -1;
                         }
