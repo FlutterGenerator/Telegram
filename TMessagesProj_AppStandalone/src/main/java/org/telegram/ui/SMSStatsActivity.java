@@ -104,8 +104,8 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 int w = Theme.dialogs_errorDrawable.getIntrinsicWidth();
                 int h = Theme.dialogs_errorDrawable.getIntrinsicHeight();
                 if (sz < 18) {
-                    w *= .8f;
-                    h *= .8f;
+                    w = (int)(w * 0.8f);
+                    h = (int)(h * 0.8f);
                 }
                 Theme.dialogs_errorDrawable.setBounds((int) (getIntrinsicWidth() / 2f - w / 2), (int) (getIntrinsicHeight() / 2f - h / 2), (int) (getIntrinsicWidth() / 2f + w / 2), (int) (getIntrinsicHeight() / 2f + h / 2));
                 Theme.dialogs_errorDrawable.draw(canvas);
