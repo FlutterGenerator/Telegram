@@ -4940,8 +4940,8 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         float height = view.getHeight() * view.getScaleY() * entitiesView.getScaleY();
 //        float px = (float) (width * Math.cos(rotation) - height * Math.sin(rotation));
 //        float py = (float) (width * Math.sin(rotation) + height * Math.cos(rotation));
-        pos[0] += width / 2;
-        pos[1] += height / 2;
+        pos[0] += Math.round(width / 2);
+        pos[1] += Math.round(height / 2);
         return pos;
     }
 
