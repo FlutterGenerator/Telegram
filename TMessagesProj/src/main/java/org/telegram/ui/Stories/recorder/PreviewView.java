@@ -1927,7 +1927,7 @@ public class PreviewView extends FrameLayout {
                     float scale = Math.max(100f / w, 100f / h);
                     if (scale > 1) {
                         w *= scale;
-                        h *= scale;
+                        h = Math.round(h * scale);
                     }
                     Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
                     wallpaperDrawable.setBounds(0, 0, w, h);
