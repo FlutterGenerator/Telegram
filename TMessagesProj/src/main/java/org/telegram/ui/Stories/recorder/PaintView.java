@@ -2947,7 +2947,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                                     final float dy = cy * scaleY - v.getHeight() / 2.0f * scaleY;
                                     final float a = (float) (v.getRotation() / 180.0f * Math.PI);
                                     stickerEntity.x += dx * Math.cos(a) - dy * Math.sin(a);
-                                    stickerEntity.y += dx * Math.sin(a) + dy * Math.cos(a);
+                                    stickerEntity.y += (float) (dx * Math.sin(a) + dy * Math.cos(a));
                                     stickerEntity.x += -size / 2.0f * scaleX;
                                     stickerEntity.y += -size / 2.0f * scaleY;
                                     stickerEntity.x /= entitiesView.getMeasuredWidth();
