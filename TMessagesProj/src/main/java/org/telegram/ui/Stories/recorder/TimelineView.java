@@ -1971,7 +1971,7 @@ public class TimelineView extends View {
                 for (int j = 0; j < waveforms.size(); ++j) {
                     short bar = waveforms.get(j) == null || i >= waveforms.get(j).getCount() ? 0 : waveforms.get(j).getBar(i);
                     if (i < animatedLoaded.get(j) && i + 1 > animatedLoaded.get(j)) {
-                        bar *= (animatedLoaded.get(j) - i);
+                        bar = (short)(bar * (animatedLoaded.get(j) - i));
                     } else if (i > animatedLoaded.get(j)) {
                         bar = 0;
                     }
